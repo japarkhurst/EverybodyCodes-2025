@@ -25,9 +25,9 @@ for move in moves:
     print(idx)
     if idx < 0:
         # idx = 0
-        idx = name_count + cnt
+        idx += name_count
     elif idx > max_idx:
         # idx = max_idx
-        idx = cnt - name_count
+        idx -= name_count
     print(f'{idx=}')
 print(names[idx])
