@@ -30,4 +30,5 @@ for move in moves:
         # idx = max_idx
         idx -= name_count
     print(f'{idx=}')
+    names[idx],names[cur_idx] = names[cur_idx],names[idx]
 print(names[idx])
