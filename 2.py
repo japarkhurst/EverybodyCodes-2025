@@ -24,4 +24,3 @@ R = [0,0]
 for i in range(3):
     R = cycle(R,(10,10))
 print(R)
-print(R)
