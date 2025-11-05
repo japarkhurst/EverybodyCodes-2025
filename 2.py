@@ -26,14 +26,15 @@ for i in range(3):
     R = cycle(R,A,(10,10))
 print(R)
 
+gridSize = 100
 A = [35300,-64910]
 Z = add(A,(1000,1000))
 print(A,Z)
 
 ax,ay = A
 zx,zy = Z
-stepX = (zx-ax)//100
-stepY = (zy-ay)//100
+stepX = (zx-ax)//gridSize
+stepY = (zy-ay)//gridSize
 print(stepX,stepY)
 xCoords = list(range(ax,zx+1,stepX))
 yCoords = list(range(ay,zy+1,stepY))
