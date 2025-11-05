@@ -17,7 +17,7 @@ def divide(R1,R2):
 
 R = [0,0]
 A = [25,9]
-for I in range(3):
+for i in range(3):
     R = multiply(R,R)
     print(R)
     R = divide(R,(10,10))
