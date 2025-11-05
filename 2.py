@@ -13,12 +13,15 @@ def divide(R1,R2):
     X2,Y2 = R2
     return (X1 // X2, Y1 // Y2)
 
-R = [0,0]
-A = [25,9]
-for i in range(3):
+def cycle(R,divisor):
     R = multiply(R,R)
-    print(R)
-    R = divide(R,(10,10))
-    print(R)
+    R = divide(R,divisor)
     R = add(R,A)
-    print(R)
+    return R
+
+A = [25,9]
+R = [0,0]
+for i in range(3):
+    R = cycle(R,(10,10))
+print(R)
+print(R)
