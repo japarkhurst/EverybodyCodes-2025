@@ -11,6 +11,7 @@ def add(R1,R2):
 def divide(R1,R2):
     X1,Y1 = R1
     X2,Y2 = R2
+    return (int(X1 / X2), int(Y1 / Y2))
     return (X1 // X2, Y1 // Y2)
 
 def cycle(R,A,divisor):
