@@ -24,9 +24,3 @@ for I in range(3):
     print(R)
     R = add(R,A)
     print(R)
-
-Cycle I
-R = R * R = [0,0]
-R = R / [10,10] = [0,0]
-R = R + A = [25,9]
-
