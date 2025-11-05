@@ -39,22 +39,29 @@ yCoords = list(range(ay,zy+1,stepY))
 print(len(xCoords))
 pts = list(zip(xCoords, yCoords))
 pts = []
-for x in xCoords:
-    for y in yCoords:
-        pts.append((x,y))
+for y in yCoords:
+    for x in xCoords:
+        pts.append([x,y])
 print(pts[:5])
 print(pts[-5:])
 print(len(pts))
 
 engraved_cnt = 0
-for pt in pts:
+for P in pts:
     R = (0,0)
     engraved = True
-    for i in range(100):
-        R = cycle(R,pt,(100000,100000))
+    for C in range(100):
+        R = cycle(R,P,(100000,100000))
         if abs(R[0])>1000000 or abs(R[1])>1000000:
             engraved = False
+            if P in ([35460,-64910],[35470,-64910],[35480,-64910],[35680,-64850],[35630,-64830]):
+                print(f'{P=} {R=} {C=}')
             break
+    
+    if P in ([35630,-64880],[35630,-64870],[35640,-64860],[36230,-64270],[36250,-64270]):
+        print(f'{P=} {R=}')
+        
+    
     if engraved:
         engraved_cnt+=1
 print(engraved_cnt)
