@@ -24,3 +24,21 @@ R = [0,0]
 for i in range(3):
     R = cycle(R,(10,10))
 print(R)
+
+A=[35300,-64910]
+Z = add(A,(1000,1000))
+print(Z)
+
+ax,ay = a
+zx,zy = z
+stepX = (ax-zx)//101
+stepY = (ay-zy)//101
+
+xCoords = range(ax,zx,stepX)
+yCoords = range(ay,zy,stepY)
+
+pts = zip(xCoords, yCoords)
+print(pts[:5])
+print(pts[-5:])
+
+xCoords = range(A[0],
