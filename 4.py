@@ -11,9 +11,9 @@ for i,x in enumerate(input.split('\n')):
     if i == 0:
         r*=int(x)
     elif '|' in x:
-        n,d = x.split('|')
+        d,n = x.split('|')
         r*=(int(n)/int(d))
     else:
         r*=(1/int(x))
-    print(r)
-print(r*100)
+    #print(x,r)
+print(int(r*100))
