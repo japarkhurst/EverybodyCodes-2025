@@ -1,3 +1,15 @@
+input = '''102
+75
+50
+35
+13'''
+
+for i,x in enumerate(input.split('\n')):
+    if i == 0:
+        first = int(x)
+last = int(x)
+print(int(first/last*2025))
+
 input = '''5
 7|21
 18|36
