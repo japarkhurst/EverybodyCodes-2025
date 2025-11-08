@@ -44,13 +44,10 @@ def calcFishbone(nums):
             fb[i+1] = {l:None,m:n,r:None}
     levels = []
     for i in range(len(fb)):
-        seg_nums = [fb[i][l],fb[i][m],fb[i][r]]
-        seg_nums = [n for n in seg_nums if n]
+        seg_nums = [n for n in [fb[i][l],fb[i][m],fb[i][r]] if n]
         levels.append(int(''.join(seg_nums)))
     spine = ''.join([fb[i][m] for i in range(len(fb))])
     print(spine)
-    #fb['quality'] = int(spine)
-    #fb['levels'] = levels 
     return int(spine),levels
 
 qualities = []
@@ -58,12 +55,9 @@ strengthDict = {}
 for line in input.split('\n'):
     id,nums = parseLine(line)
     quality,levels = calcFishbone(nums)
-    #quality = fb['quality']
-    #levels = fb['levels']
     qualities.append(quality)
     strengthDict[id] = {'q':quality,'l':levels}
 print(max(qualities)-min(qualities))
-#print(strengthDict)
 swordOrder = sorted(strengthDict,key=lambda x:[strengthDict[x]['q'],strengthDict[x]['l'],int(x)])[::-1]
 print(swordOrder)
 
