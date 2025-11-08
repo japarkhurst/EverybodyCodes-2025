@@ -2,6 +2,8 @@ from pprint import pprint
 input = '''58:5,3,7,8,9,10,4,5,7,8,8'''
 id,nums = input.split(':')
 nums = nums.split(',')
+
+def calcQuality(nums):
 l,m,r = 'l','m','r'
 fb = {}
 i = -1
