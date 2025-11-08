@@ -28,7 +28,7 @@ def calcQuality(nums):
 qualities = []
 for line in input.split('\n'):
     id,nums = parseLine(line)
-    quality = getQuality(nums)
+    quality = calcQuality(nums)
     qualities.append(quality)
 print(max(qualities)-min(qualities))
     
