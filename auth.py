@@ -2,6 +2,10 @@
 import json
 import urllib
 
+from cryptography.hazmat.primitives.ciphers import algorithms
+from cryptography.hazmat.primitives.ciphers import Cipher
+from cryptography.hazmat.primitives.ciphers import modes
+
 token = '345a6440-7ff0-43f2-925e-5f3251d78fcc'
 #{"id":1736,"code":"211678B028F2F587F2E8D215E55429E3G1736","name":"japarkhurst","country":"us","url":"https://github.com/japarkhurst","level":63,"seed":40,"penaltyUntil":1762395564456,"badges":{"1":null,"2":null,"2024":null,"2025":null},"ai":false,"streamer":false,"serverTime":1762454207546}
 
@@ -29,11 +33,6 @@ def decrypt(input_hex, key):
     pad_length = decrypted_bytes[-1]
     result = decrypted_bytes[:-pad_length].decode()
     return result
-
-
-from cryptography.hazmat.primitives.ciphers import algorithms
-from cryptography.hazmat.primitives.ciphers import Cipher
-from cryptography.hazmat.primitives.ciphers import modes
 
 
 quest = 1
