@@ -29,8 +29,11 @@ length = len(input)
 for idx,l in enumerate(input):
     if l.isupper():
         continue
-    min_idx = max(idx-length,0)
-    max_idx = min(idx+length,length)
-    subset = [x for x in input[min_idx:max_idx]
-    cnt += len([x for x in subset if x == l.upper()])
+    min_idx = max(idx-distance,0)
+    max_idx = min(idx+distance,length)
+    subset = [x for x in input[min_idx:max_idx+1]]
+    print("".join(subset))
+    subset_cnt = len([x for x in subset if x == l.upper()])
+    print(subset_cnt)
+    cnt += subset_cnt
 print(cnt)
