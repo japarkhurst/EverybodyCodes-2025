@@ -1,5 +1,4 @@
 input = 'ABabACacBCbca'
-
 m = 0
 cnt = 0
 for x in input:
@@ -10,8 +9,6 @@ for x in input:
 print(cnt)
 
 input = 'ABabACacBCbca'
-#input = 'ABCBABBCbbaACaACbCBbBbacBBccaAbbabCcbacAbAAACbaaACAbbbBaCBBBAccbbBaBCBAaBaCAcBcBaAAcCCCaAcbbAaCBabaA'
-input = 'ABCAbbCBAaabCAbBcBbcBCbabBCBACcCbAAcabcbCACcacBbBbBbaAcbbBCccbbBcaCCcAabABBcbBAAccabAaCcCCcCcaaCCaaAbAbcAaaAAbBbcaaAAaABaAACaCAaBabBACacCccBCcacBcccACcCaBCBbaCBabCBaACbAaABAbcCaAbcbABBbBbcabbCBbBbcBAACaABAbcCaAbbaCaAAcBCAACbBAaABBAaBacBAABACBcaccCbaBCcBcACbcBAbcCACaCbaabbBaaAAbbaAaCBBCCCaaccCAaCcBcb'
 cnt = 0
 for l in ('a','b','c'):
     m = 0
