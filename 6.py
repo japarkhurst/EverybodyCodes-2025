@@ -46,8 +46,10 @@ distance = 1000
 init_length = len(input)
 print(f'{init_length=}')
 num_needed_for_repeat = distance//init_length + 1
+while multiplier%num_needed_for_repeat != 0:
+    num_needed_for_repeat+=1
 input_iterations = num_needed_for_repeat * 3 # one for start, one for middle, one for end
-repeat_multiplier = multiplier - (num_needed_for_repeat*2) # number of times to multiply the middle section
+repeat_multiplier = int((multiplier - (num_needed_for_repeat*2))/num_needed_for_repeat) # number of times to multiply the middle section
 start_mid_break = num_needed_for_repeat * init_length
 mid_end_break = start_mid_break * 2
 print(f'{num_needed_for_repeat=}\n{input_iterations=}\n{repeat_multiplier=}\n{start_mid_break=}\n{mid_end_break=}')
@@ -65,7 +67,7 @@ for idx,l in enumerate(input):
     #print("".join(subset))
     subset_cnt = len([x for x in subset if x == l.upper()])
     #print(subset_cnt)
-    if idx < start_mid_break:
+    if idx <= start_mid_break:
         start+=subset_cnt
         start_cnt+=1
     elif idx >= mid_end_break:
