@@ -37,3 +37,29 @@ for idx,l in enumerate(input):
     print(subset_cnt)
     cnt += subset_cnt
 print(cnt)
+
+cnt = 0
+multiplier = 1000
+distance = 1000
+#input *= multiplier
+input *= 3
+length = len(input)
+start,mid,end = 0,0,0
+for idx,l in enumerate(input):
+    if l.isupper():
+        continue
+    min_idx = max(idx-distance,0)
+    max_idx = min(idx+distance,length)
+    subset = [x for x in input[min_idx:max_idx+1]]
+    #print("".join(subset))
+    subset_cnt = len([x for x in subset if x == l.upper()])
+    #print(subset_cnt)
+    if idx < distance:
+        start += subset_cnt
+    elif idx < length-distance:
+        mid += subset_cnt
+    else:
+        end += subset_cnt
+    #cnt += subset_cnt
+cnt = start + mid*(multiplier-2) + end
+print(cnt)
