@@ -20,6 +20,7 @@ for l in ('a','b','c'):
             cnt += m
 print(cnt)
 
+input = 'AABCBABCABCabcabcABCCBAACBCa'
 cnt = 0
 multiplier = 1
 distance = 10
