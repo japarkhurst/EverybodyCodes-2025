@@ -19,3 +19,17 @@ for l in ('a','b','c'):
         elif x == l:
             cnt += m
 print(cnt)
+
+cnt = 0
+multiplier = 1
+distance = 10
+input *= multiplier
+length = len(input)
+for idx,l in enumerate(input):
+    if l.isupper():
+        continue
+    min_idx = max(idx-length,0)
+    max_idx = min(idx+length,length)
+    subset = [x for x in input[min_idx:max_idx]
+    cnt += len([x for x in subset if x == l.upper()])
+print(cnt)
