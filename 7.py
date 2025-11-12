@@ -54,8 +54,9 @@ print(sum(indices))
 
 keys = list(pairDict.keys())
 names = validNames
-unique = set(names)
+masterUnique = set()
 for name in names:
+    unique = {name}
     for i in range(len(name)-1,11):
         #print(i)
         subset = [x for x in unique if len(x)==i and x[-1] in keys]
@@ -64,5 +65,7 @@ for name in names:
             options = pairDict[s[-1]]
             for opt in options:
                 unique.add(s+opt)
-unique = {u for u in unique if len(u) >= 7 and len(u)<=11}
-print(len(unique))            
+    unique = {u for u in unique if len(u) >= 7 and len(u)<=11}
+    print(f'{name}: {len(unique)}')            
+    masterUnique.update(unique)
+print(len(masterUnique))
