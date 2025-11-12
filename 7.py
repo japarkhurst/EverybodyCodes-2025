@@ -28,14 +28,28 @@ i > s'''
 names,rules = input.split("\n\n")
 names = names.split(',')
 rules = rules.split('\n')
-
 pairs = []
+pairDict = {}
 for r in rules:
     start,ends = r.split(' > ')
     ends = ends.split(',')
+    pairDict[start] = ends
     for end in ends:
         pairs.append(start+end)
-print(pairs)
+print(pairDict)
+keys = list(pairDict.keys())
+name = names[0]
+unique = {name}
+for i in range(len(name)-1,11):
+    print(i)
+    subset = [x for x in unique if len(x)==i and x[-1] in keys]
+    print(subset)
+    for s in subset:
+        options = pairDict[s[-1]]
+        for opt in options:
+            unique.add(s+opt)
+unique = {u for u in unique if len(u) >= 7}
+print(len(unique))            
 
 found = False
 invalid = False
