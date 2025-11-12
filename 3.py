@@ -12,8 +12,3 @@ countDict = {x:boxes.count(x) for x in set(boxes)}
 
 for x in sorted(set(boxes),key=lambda x:countDict[x],reverse=True):
     print(f'{x}:{countDict[x]}')
-'''
-2409 
-correct number of characters
-incorrect first character
-'''
