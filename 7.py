@@ -32,23 +32,23 @@ rules = rules.split('\n')
 pairs = []
 for r in rules:
     start,ends = r.split(' > ')
+    ends = ends.split(',')
     for end in ends:
         pairs.append(start+end)
-#print(pairs)
+print(pairs)
 
 found = False
 invalid = False
+invalidList = []
 for name in names:
     for i in range(len(name)-1):
         test = name[i:i+2]
         if test not in pairs:
+            print(f'{name}: {test}')
             invalid = True
+            invalidList.append(name)
             break
     if not invalid:
         break
 print(name)
-Haragrath
-
-Your answer length is: incorrect
-The first character of your answer is: incorrect
-            
+print([x for x in names if x not in invalidList])
