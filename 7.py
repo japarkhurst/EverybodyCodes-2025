@@ -35,16 +35,12 @@ for r in rules:
         pairs.append(start+end)
 #print(pairDict)
 
-
-found = False
-invalid = False
 invalidList = []
 for name in names:
     for i in range(len(name)-1):
         test = name[i:i+2]
         if test not in pairs:
             #print(f'{name}: {test}')
-            invalid = True
             invalidList.append(name)
             break
 validNames = [x for x in names if x not in invalidList]
@@ -65,7 +61,7 @@ for name in names:
             options = pairDict[s[-1]]
             for opt in options:
                 unique.add(s+opt)
-    unique = {u for u in unique if len(u) >= 7 and len(u)<=11}
+    unique = {u for u in unique if len(u) >= 7}
     print(f'{name}: {len(unique)}')            
     masterUnique.update(unique)
 print(len(masterUnique))
