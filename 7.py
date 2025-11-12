@@ -48,12 +48,14 @@ print(validNames)
 indices = [i for i,x in enumerate(names) if x in validNames]
 print(sum(indices))
 
+minLength = 7
+maxLength = 11
 keys = list(pairDict.keys())
 names = validNames
 masterUnique = set()
 for name in names:
     unique = {name}
-    for i in range(len(name)-1,11):
+    for i in range(len(name)-1,maxLength):
         #print(i)
         subset = [x for x in unique if len(x)==i and x[-1] in keys]
         #print(subset)
@@ -61,7 +63,7 @@ for name in names:
             options = pairDict[s[-1]]
             for opt in options:
                 unique.add(s+opt)
-    unique = {u for u in unique if len(u) >= 7}
+    unique = {u for u in unique if len(u) >= minLength}
     print(f'{name}: {len(unique)}')            
     masterUnique.update(unique)
 print(len(masterUnique))
