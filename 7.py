@@ -52,3 +52,6 @@ for name in names:
         break
 print(name)
 print([x for x in names if x not in invalidList])
+indices = [i for i,x in enumerate(names,1) if x not in invalidList]
+print(indices)
+print(sum(indices))
