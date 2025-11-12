@@ -11,6 +11,20 @@ e > t
 O > r
 t > h'''
 
+input = '''Harkris,Hazkris,Harox,Hazox,Kykris,Kyox,Kyagrath,Hazagrath,Haragrath
+
+K > y
+H > a
+r > a,i,o,k
+t > h
+z > a,o,k
+o > x
+y > a,b
+g > r
+a > g,t,b
+k > r
+i > s'''
+
 names,rules = input.split("\n\n")
 names = names.split(',')
 rules = rules.split('\n')
@@ -33,4 +47,8 @@ for name in names:
     if not invalid:
         break
 print(name)
+Haragrath
+
+Your answer length is: incorrect
+The first character of your answer is: incorrect
             
