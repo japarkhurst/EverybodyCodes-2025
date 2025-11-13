@@ -14,7 +14,7 @@ strung = []
 knots = 0
 for s,e in pairs:
     cnt = sum(1 for s1,e1 in strung if (s<s1<e and (e1<s or e1>e)) or (s<e1<e and (s1<s or s1>e)))
-    print(cnt)
+    #print(cnt)
     knots += cnt
     strung.append((s,e))
 print(knots)
