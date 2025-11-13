@@ -34,6 +34,4 @@ for s in range(1,nail_count+1):
             max_pair = [s,e]
 if max_pair in pairs:
     max_cnt+=1
-print(max_cnt)    
-
-# not 2764
+print(max_cnt)
