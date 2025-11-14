@@ -38,6 +38,7 @@ for c_id,c_dna in dnaDict.items():
     #parents = [id for id in dnaDict if id != c_id]
     #p1_id,p2_id = parents
     degreeDict = {}
+    degreeFound = False
     for p1_id in range(1,cnt+1):
         for p2_id in range(1,cnt+1):
             if (p2_id,p1_id) in degreeDict or p1_id == p2_id or p1_id == c_id or p2_id == c_id:
@@ -45,7 +46,11 @@ for c_id,c_dna in dnaDict.items():
             degree = calcDegree(c_dna,p1_id,p2_id)
             if not degree:
                 continue
+            degreeFound = True
             degreeDict[(p1_id,p2_id)] = degree
+            break
+        if degreeFound:
+            break
     if not degreeDict:
         continue
     masterDegreeDict[c_id] = {k:v for k,v in degreeDict.items() if v}
