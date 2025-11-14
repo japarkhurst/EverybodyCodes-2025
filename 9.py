@@ -45,11 +45,11 @@ for c_id,c_dna in dnaDict.items():
     degreeFound = False
     for p1_id in range(1,cnt+1):
         for p2_id in range(1,cnt+1):
-            if p1_id in children or p2_id in childrem:
+            if p1_id == p2_id or p1_id == c_id or p2_id == c_id:
                 continue
             elif (p2_id,p1_id) in degreeDict:
                 continue
-            elif p1_id == p2_id or p1_id == c_id or p2_id == c_id:
+            elif p1_id in children or p2_id in children:
                 continue
             degree = calcDegree(c_dna,p1_id,p2_id)
             if not degree:
