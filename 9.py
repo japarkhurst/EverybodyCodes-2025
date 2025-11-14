@@ -40,7 +40,39 @@ def calcDegree(c_dna,p1_id,p2_id):
         if c_char == p2_char:
             p2_degree+=1
     return p1_degree * p2_degree
-    
+
+cnt = len(dnaDict)
+masterDegreeDict = {}
+childParentDict = {}
+for c_id,c_dna in dnaDict.items():
+    #parents = [id for id in dnaDict if id != c_id]
+    #p1_id,p2_id = parents
+    degreeDict = {}
+    degreeFound = False
+    for p1_id in range(1,cnt+1):
+        for p2_id in range(1,cnt+1):
+            if (p2_id,p1_id) in degreeDict or p1_id == p2_id or p1_id == c_id or p2_id == c_id:
+                continue
+            degree = calcDegree(c_dna,p1_id,p2_id)
+            if not degree:
+                continue
+            degreeFound = True
+            degreeDict[(p1_id,p2_id)] = degree
+            childParentDict[c_id] = (p1_id,p2_id)
+            break
+        if degreeFound:
+            break
+    if not degreeDict:
+        continue
+    masterDegreeDict[c_id] = {k:v for k,v in degreeDict.items() if v}
+#print(masterDegreeDict)
+totalDegrees = 0
+for c_id,degree_dict in masterDegreeDict.items():
+    degrees = sum(degree_dict.values())
+    totalDegrees+=degrees
+print(totalDegrees)
+
+'''
 cnt = len(dnaDict)
 degreeDict = {}
 childParentDict = {}
@@ -79,6 +111,8 @@ for c_id,c_dna in dnaDict.items():
 #print(degreeDict)
 totalDegrees = sum({v for k,v in degreeDict.items()})
 print(totalDegrees)
+'''
+
 families = []
 for c_id,(p1_id,p2_id) in childParentDict.items():
     f_indices = [i for i,f in enumerate(families) if p1_id in f or p2_id in f]
@@ -104,6 +138,10 @@ print(sum(max(families,key=lambda x:len(x))))
 
 '''
 12243
+Your answer length is: correct
+The first character of your answer is: incorrect
+
+17523
 Your answer length is: correct
 The first character of your answer is: incorrect
 '''
