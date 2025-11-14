@@ -100,3 +100,10 @@ for c_id,(p1_id,p2_id) in childParentDict.items():
         families.append({c_id,p1_id,p2_id})
 #print(families)
 print(sum(max(families,key=lambda x:len(x))))
+
+
+'''
+12243
+Your answer length is: correct
+The first character of your answer is: incorrect
+'''
