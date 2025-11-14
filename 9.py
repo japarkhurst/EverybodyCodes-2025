@@ -34,26 +34,37 @@ def calcDegree(c_dna,p1_id,p2_id):
     
 cnt = len(dnaDict)
 masterDegreeDict = {}
+parents = set()
+children = set()
 for c_id,c_dna in dnaDict.items():
     #parents = [id for id in dnaDict if id != c_id]
     #p1_id,p2_id = parents
+    if c_id in parents:
+        continue
     degreeDict = {}
     degreeFound = False
     for p1_id in range(1,cnt+1):
         for p2_id in range(1,cnt+1):
-            if (p2_id,p1_id) in degreeDict or p1_id == p2_id or p1_id == c_id or p2_id == c_id:
+            if p1_id in children or p2_id in childrem:
+                continue
+            elif (p2_id,p1_id) in degreeDict:
+                continue
+            elif p1_id == p2_id or p1_id == c_id or p2_id == c_id:
                 continue
             degree = calcDegree(c_dna,p1_id,p2_id)
             if not degree:
                 continue
             degreeFound = True
             degreeDict[(p1_id,p2_id)] = degree
+            parents.add(p1_id)
+            parents.add(p2_id)
             break
         if degreeFound:
             break
     if not degreeDict:
         continue
     masterDegreeDict[c_id] = {k:v for k,v in degreeDict.items() if v}
+    children.add(c_id)
 print(masterDegreeDict)
 totalDegrees = 0
 for c_id,degree_dict in masterDegreeDict.items():
