@@ -14,10 +14,11 @@ SS.....S..S..'''
 
 rows = input.split('\n')
 row_count = len(rows)
-col_count = len(rows[0]]
+col_count = len(rows[0])
                 
 sheep = set()
 dragons = set()
+cDict = {}
 for y,row in enumerate(rows):
     for x,char in enumerate(row):
         cDict[(x,y)] = char
@@ -37,15 +38,19 @@ def getMoves(xy):
     newMoves.add((x-1,y-2))
     newMoves.add((x+1,y-2))
     newMoves.add((x+2,y-1))
-    return newMoves
+    
+    return {(x,y) for x,y in newMoves if 0 <= x < col_count and 0 <= y < row_count}
 
+from copy import deepcopy
 move_count = 3
 reachable = dragons
 for i in range(move_count):
-    for c in reachable:
-        reachable.update(newMoves)
-print(len(reachable))
-    
+    for c in deepcopy(reachable):
+        newMoves = getMoves
+        reachable.update(getMoves(c))
+#print(len(reachable))
+sheep_in_range = {x for x in reachable if x in sheep}
+print(len(sheep_in_range))
 
 
     
