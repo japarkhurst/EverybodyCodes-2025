@@ -12,6 +12,20 @@ S.S..S..S....
 .......S....S
 SS.....S..S..'''
 
+input = '''..SSS##.....
+.S#.##..S#SS.
+..S.##.S#..S.
+.#..#S##..SS.
+..SSSS.#.S.#.
+.##..SS.#S.#S
+SS##.#D.S.#..
+S.S..S..S###.
+.##.S#.#....S
+.SSS.#SS..##.
+..#.##...S##.
+.#...#.S#...S
+SS...#.S.#S..'''
+
 rows = input.split('\n')
 row_count = len(rows)
 col_count = len(rows[0])
