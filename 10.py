@@ -12,7 +12,7 @@ S.S..S..S....
 .......S....S
 SS.....S..S..'''
 
-input = '''..SSS##.....
+input = '''...SSS##.....
 .S#.##..S#SS.
 ..S.##.S#..S.
 .#..#S##..SS.
@@ -29,7 +29,7 @@ SS...#.S.#S..'''
 rows = input.split('\n')
 row_count = len(rows)
 col_count = len(rows[0])
-                
+#print(f'{row_count} rows; {col_count}: columns')              
 sheep = set()
 dragons = set()
 hideouts = set()
@@ -61,39 +61,42 @@ def getMoves(xy):
 def getMovedSheep(sheep):
     return {(x,y+1) for x,y in sheep if 0 <= x < col_count and 0 <= y+1 < row_count}
 
-from copy import deepcopy
-round_count = 3
-reachable = dragons
-for i in range(round_count):
-    for c in deepcopy(reachable):
-        reachable.update(getMoves(c))
-sheep_in_range = {x for x in reachable if x in sheep}
-print(len(sheep_in_range))
+def part1(round_count):
+    from copy import deepcopy
+    reachable = dragons
+    for i in range(round_count):
+        for c in deepcopy(reachable):
+            reachable.update(getMoves(c))
+    sheep_in_range = {x for x in reachable if x in sheep}
+    print(len(sheep_in_range))
 
+def printCoords(sheep):
+    print(f'{len(sheep)}: {sorted(sheep,key=lambda x:[x[1],x[0]])}')
     
 from copy import deepcopy
 initialSheep = deepcopy(sheep)
 initialSheepCount = len(initialSheep)
-print(initialSheepCount)
+#print(initialSheepCount)
 round_count = 3
 reachable = dragons
+eaten_count = 0
+#print(f'{len(sheep)}: {sorted(sheep,key=lambda x:[x[1],x[0]])}')
 for i in range(round_count):
     new = set()
-    #for c in deepcopy(reachable):
-        #reachable.update(getMoves(c))
     for c in reachable:
         new.update(getMoves(c))
     reachable = deepcopy(new)
-    print(len(reachable))
+    #print(len(reachable))
+    eaten = {s for s in sheep if s in reachable and s not in hideouts}
+    eaten_count+=len(eaten)
     sheep = {s for s in sheep if s not in reachable or s in hideouts}
     sheep = getMovedSheep(sheep)
+    eaten = {s for s in sheep if s in reachable and s not in hideouts}
+    eaten_count+=len(eaten)
     sheep = {s for s in sheep if s not in reachable or s in hideouts}
-    print(len(sheep))
-sheepEaten = {s for s in initialSheep if s not in sheep}
-print(len(sheepEaten))
-#print(len(reachable))
-sheep_in_range = {x for x in reachable if x in sheep}
-print(len(sheep_in_range))
+    #print(f'{len(sheep)}: {sorted(sheep,key=lambda x:[x[1],x[0]])}')
+print(eaten_count)
+
 
 
     
