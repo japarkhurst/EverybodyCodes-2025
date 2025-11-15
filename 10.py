@@ -41,12 +41,14 @@ def getMoves(xy):
     
     return {(x,y) for x,y in newMoves if 0 <= x < col_count and 0 <= y < row_count}
 
+getMovedSheep(sheep):
+    return {(x,y+1) for x,y in sheep if 0 <= x < col_count and 0 <= y < row_count}
+
 from copy import deepcopy
-move_count = 3
+round_count = 3
 reachable = dragons
-for i in range(move_count):
+for i in range(round_count):
     for c in deepcopy(reachable):
-        newMoves = getMoves
         reachable.update(getMoves(c))
 #print(len(reachable))
 sheep_in_range = {x for x in reachable if x in sheep}
