@@ -68,8 +68,13 @@ print(initialSheepCount)
 round_count = 3
 reachable = dragons
 for i in range(round_count):
-    for c in deepcopy(reachable):
-        reachable.update(getMoves(c))
+    new = set()
+    #for c in deepcopy(reachable):
+        #reachable.update(getMoves(c))
+    for c in reachable:
+        new.update(getMoves(c))
+    reachable = deepcopy(new)
+    print(len(reachable))
     sheep = {s for s in sheep if s not in reachable or s in hideouts}
     sheep = getMovedSheep(sheep)
     sheep = {s for s in sheep if s not in reachable or s in hideouts}
