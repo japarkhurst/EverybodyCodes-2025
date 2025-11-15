@@ -18,12 +18,15 @@ col_count = len(rows[0])
                 
 sheep = set()
 dragons = set()
+hideouts = set()
 cDict = {}
 for y,row in enumerate(rows):
     for x,char in enumerate(row):
         cDict[(x,y)] = char
         if char == 'S':
             sheep.add((x,y))
+        elif char == '#':
+            hideouts.add((x,y))
         elif char == 'D':
             dragons.add((x,y))
 
@@ -42,7 +45,7 @@ def getMoves(xy):
     return {(x,y) for x,y in newMoves if 0 <= x < col_count and 0 <= y < row_count}
 
 getMovedSheep(sheep):
-    return {(x,y+1) for x,y in sheep if 0 <= x < col_count and 0 <= y < row_count}
+    return {(x,y+1) for x,y in sheep if 0 <= x < col_count and 0 <= y+1 < row_count}
 
 from copy import deepcopy
 round_count = 3
