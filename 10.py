@@ -39,5 +39,13 @@ def getMoves(xy):
     newMoves.add((x+2,y-1))
     return newMoves
 
+move_count = 3
+reachable = dragons
+for i in range(move_count):
+    for c in reachable:
+        reachable.update(newMoves)
+print(len(reachable))
+    
+
 
     
