@@ -70,9 +70,9 @@ reachable = dragons
 for i in range(round_count):
     for c in deepcopy(reachable):
         reachable.update(getMoves(c))
-    sheep = {s in sheep if s not in reachable or s in hideouts}
+    sheep = {s for s in sheep if s not in reachable or s in hideouts}
     sheep = getMovedSheep(sheep)
-    sheep = {s in sheep if s not in reachable or s in hideouts}
+    sheep = {s for s in sheep if s not in reachable or s in hideouts}
     print(len(sheep))
 sheepEaten = {s for s in initialSheep if s not in sheep}
 print(len(sheepEaten))
