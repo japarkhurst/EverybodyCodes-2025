@@ -114,27 +114,35 @@ print(totalDegrees)
 '''
 
 families = []
-for c_id,(p1_id,p2_id) in childParentDict.items():
-    f_indices = [i for i,f in enumerate(families) if p1_id in f or p2_id in f]
-    #print(f_indices)
-    if f_indices:
-        new_family = set()
-        families_to_remove = []
-        for f_index in f_indices:
-            family = families[f_index]
-            #print(family)
-            new_family.update(family)
-            families_to_remove.append(family)
-        new_family.update({c_id,p1_id,p2_id})
-        families.append(new_family)
-        for family in families_to_remove:
-            families.remove(family)
-        
-    else:
-        families.append({c_id,p1_id,p2_id})
-#print(families)
-print(sum(max(families,key=lambda x:len(x))))
+priorCount = 0
+while True:
+    for c_id,(p1_id,p2_id) in childParentDict.items():
+        f_indices = [i for i,f in enumerate(families) if p1_id in f or p2_id in f]
+        #print(f_indices)
+        if f_indices:
+            new_family = set()
+            families_to_remove = []
+            for f_index in f_indices:
+                family = families[f_index]
+                #print(family)
+                new_family.update(family)
+                families_to_remove.append(family)
+            new_family.update({c_id,p1_id,p2_id})
+            families.append(new_family)
+            for family in families_to_remove:
+                families.remove(family)
+        else:
+            families.append({c_id,p1_id,p2_id})
 
+    newCount = sum(len(f) for f in families)
+    if newCount == priorCount:
+        break
+    priorCount = newCount
+            
+    #print(families)
+    print([len(f) for f in families])
+    print(sum(len(f) for f in families))
+    print(sum(max(families,key=lambda x:len(x))))
 
 '''
 12243
@@ -148,5 +156,4 @@ The first character of your answer is: incorrect
 44003
 Your answer length is: correct
 The first character of your answer is: correct
-
 '''
