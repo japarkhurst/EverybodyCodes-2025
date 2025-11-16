@@ -93,17 +93,3 @@ while True:
     print([len(f) for f in families])
     print(sum(len(f) for f in families))
     print(sum(max(families,key=lambda x:len(x))))
-
-'''
-12243
-Your answer length is: correct
-The first character of your answer is: incorrect
-
-17523
-Your answer length is: correct
-The first character of your answer is: incorrect
-
-44003
-Your answer length is: correct
-The first character of your answer is: correct
-'''
