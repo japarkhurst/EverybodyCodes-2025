@@ -42,12 +42,9 @@ def calcDegree(c_dna,p1_id,p2_id):
     return p1_degree * p2_degree
 
 cnt = len(dnaDict)
-masterDegreeDict = {}
 childParentDict = {}
+degreeDict = {}
 for c_id,c_dna in dnaDict.items():
-    #parents = [id for id in dnaDict if id != c_id]
-    #p1_id,p2_id = parents
-    degreeDict = {}
     degreeFound = False
     for p1_id in range(1,cnt+1):
         for p2_id in range(1,cnt+1):
@@ -57,61 +54,14 @@ for c_id,c_dna in dnaDict.items():
             if not degree:
                 continue
             degreeFound = True
-            degreeDict[(p1_id,p2_id)] = degree
             childParentDict[c_id] = (p1_id,p2_id)
             break
         if degreeFound:
             break
-    if not degreeDict:
-        continue
-    masterDegreeDict[c_id] = {k:v for k,v in degreeDict.items() if v}
-#print(masterDegreeDict)
-totalDegrees = 0
-for c_id,degree_dict in masterDegreeDict.items():
-    degrees = sum(degree_dict.values())
-    totalDegrees+=degrees
-print(totalDegrees)
-
-'''
-cnt = len(dnaDict)
-degreeDict = {}
-childParentDict = {}
-parents = set()
-children = set()
-for c_id,c_dna in dnaDict.items():
-    #print(c_id)
-    if c_id in parents:
-        continue
-    degree = 0
-    for p1_id in range(1,cnt+1):
-        for p2_id in range(1,cnt+1):
-            if p1_id == p2_id or p1_id == c_id or p2_id == c_id:
-                #print(f'First Exit: {c_id}: {p1_id},{p2_id}')
-                continue
-            #elif p1_id in children or p2_id in children:
-                #print(f'Second Exit: {c_id}: {p1_id},{p2_id}')
-                #continue
-            degree = calcDegree(c_dna,p1_id,p2_id)
-            #print(f'{c_id}: {p1_id},{p2_id}: {degree}')
-            if not degree:
-                continue
-            childParentDict[c_id] = (p1_id,p2_id)
-            parents.add(p1_id)
-            parents.add(p2_id)
-            break
-        if degree:
-            break
     if not degree:
         continue
     degreeDict[c_id] = degree
-    children.add(c_id)
-#print(children)
-#print(parents)
-#print(childParentDict)
-#print(degreeDict)
-totalDegrees = sum({v for k,v in degreeDict.items()})
-print(totalDegrees)
-'''
+print(sum(degreeDict.values()))
 
 families = []
 priorCount = 0
