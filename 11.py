@@ -10,7 +10,9 @@ col_count = len(cols)
 rounds = 10
 phase = 1
 move_made = False
-print(f'0: {cols}')
+target = int(sum(cols)/len(cols))
+checksum = sum((idx*c for idx,c in enumerate(cols,1)))
+print(f'0: {cols}: {checksum}')
 for i in range(1,rounds+1):
     if phase == 1:
         for c in range(col_count-1):
