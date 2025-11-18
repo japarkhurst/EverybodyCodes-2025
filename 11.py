@@ -34,7 +34,9 @@ for i in range(1,rounds+1):
     #print(f'{phase}')
     print(f'{i}: {cols}: {checksum}')
     
-    
+    if len(set(cols)) == 1:
+        print(f'Balanced after {i} rounds')
+        break   
     
     
     
