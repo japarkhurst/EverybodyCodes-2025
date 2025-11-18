@@ -10,7 +10,8 @@ col_count = len(cols)
 rounds = 10
 phase = 1
 move_made = False
-for i in range(rounds):
+print(f'0: {cols}')
+for i in range(1,rounds+1):
     if phase == 1:
         for c in range(col_count-1):
             current_col = cols[c]
@@ -28,5 +29,13 @@ for i in range(rounds):
             if next_col > current_col:
                 cols[c]+=1
                 cols[c+1]-=1
-                move_made = True
-    print(cols)
+    move_made = False
+    checksum = sum((idx*c for idx,c in enumerate(cols,1)))
+    #print(f'{phase}')
+    print(f'{i}: {cols}: {checksum}')
+    
+    
+    
+    
+    
+    
