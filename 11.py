@@ -1,0 +1,32 @@
+input = '''9
+1
+1
+4
+9
+6'''
+
+cols = [int(x) for x in input.split('\n')]
+col_count = len(cols)
+rounds = 10
+phase = 1
+move_made = False
+for i in range(rounds):
+    if phase == 1:
+        for c in range(col_count-1):
+            current_col = cols[c]
+            next_col = cols[c+1]
+            if current_col > next_col:
+                cols[c]-=1
+                cols[c+1]+=1
+                move_made = True
+        if not move_made:
+            phase = 2
+    if phase == 2:
+        for c in range(col_count-1):
+            current_col = cols[c]
+            next_col = cols[c+1]
+            if next_col > current_col:
+                cols[c]+=1
+                cols[c+1]-=1
+                move_made = True
+    print(cols)
