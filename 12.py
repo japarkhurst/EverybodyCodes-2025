@@ -4,11 +4,31 @@ input = '''989611
 766789'''
 
 grid = {}
-q = []
+queue = []
 seen = set()
+burned = set()
 
 rows = input.split('\n')
+rowCount = len(rows)
+colCount = len(rows[0])
 for y,row in enumerate(rows):
     for x,char in enumerate(row):
         grid[(x,y)] = int(char)
-        
+
+def getNeighbors((x,y)):
+    neighbors = [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
+    return [(x,y) for (x,y) in neighbors if 0 <= x <= colCount-1 and 0 <= y <= rowCount-1]
+
+burned.add((0,0))
+queue = [(0,0)]
+i=0
+while queue and i<1000
+    i+=1
+    b = queue.pop()
+    b_num = grid(b)
+    neighbors = getNeighbors(b)
+    for n in neighbors:
+        if b_num <= grid[n]:
+            burned.add(n)
+            queue.append(n)
+print(len(burned))
