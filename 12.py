@@ -15,20 +15,26 @@ for y,row in enumerate(rows):
     for x,char in enumerate(row):
         grid[(x,y)] = int(char)
 
-def getNeighbors((x,y)):
+def getNeighbors(b):
+    x,y = b
     neighbors = [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
     return [(x,y) for (x,y) in neighbors if 0 <= x <= colCount-1 and 0 <= y <= rowCount-1]
 
 burned.add((0,0))
 queue = [(0,0)]
 i=0
-while queue and i<1000
+while queue and i<20:
     i+=1
     b = queue.pop()
-    b_num = grid(b)
+    b_num = grid[b]
     neighbors = getNeighbors(b)
+    #print(neighbors)
     for n in neighbors:
-        if b_num <= grid[n]:
+        n_num = grid[n]
+        #print(f'Comparing {n_num} and {b_num}')
+        if b_num >= grid[n] and n not in seen:
             burned.add(n)
             queue.append(n)
+    seen.add(b)
 print(len(burned))
+
