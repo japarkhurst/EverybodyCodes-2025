@@ -41,8 +41,10 @@ while queue and i<20:
 print(len(burned))
 
 
-
 burnScore = {}
+maxBurnCount = 0
+maxBurned = set()
+maxBurnedBarrel = (None,None)
 for g in grid:
     queue = []
     seen = set()
@@ -67,7 +69,10 @@ for g in grid:
                 queue.append(n)
         seen.add(b)
     print(len(burned))
+    if len(burned) > maxBurnCount:
+        maxBurned = burned
+        maxBurnedBarrel = g
+        maxBurnCount = len(burned)
     burnScore[g] = len(burned)
 print(burnScore)
-
-
+print(f'{maxBurnedBarrel} ({grid[maxBurnedBarrel]}) burns {len(maxBurned)}')
