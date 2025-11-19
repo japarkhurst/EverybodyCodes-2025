@@ -21,7 +21,9 @@ def getNeighbors(b):
     return [(x,y) for (x,y) in neighbors if 0 <= x <= colCount-1 and 0 <= y <= rowCount-1]
 
 burned.add((0,0))
+burned.add((colCount-1,rowCount-1))
 queue = [(0,0)]
+queue.append((colCount-1,rowCount-1))
 i=0
 while queue and i<20:
     i+=1
