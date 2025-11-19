@@ -40,3 +40,34 @@ while queue and i<20:
     seen.add(b)
 print(len(burned))
 
+
+
+burnScore = {}
+for g in grid:
+    queue = []
+    seen = set()
+    burned = set()
+
+    burned.add(g)
+    #burned.add((colCount-1,rowCount-1))
+    queue = [g]
+    #queue.append((colCount-1,rowCount-1))
+    i=0
+    while queue and i<10000:
+        i+=1
+        b = queue.pop()
+        b_num = grid[b]
+        neighbors = getNeighbors(b)
+        #print(neighbors)
+        for n in neighbors:
+            n_num = grid[n]
+            #print(f'Comparing {n_num} and {b_num}')
+            if b_num >= grid[n] and n not in seen:
+                burned.add(n)
+                queue.append(n)
+        seen.add(b)
+    print(len(burned))
+    burnScore[g] = len(burned)
+print(burnScore)
+
+
