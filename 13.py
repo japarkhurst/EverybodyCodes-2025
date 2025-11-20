@@ -88,3 +88,10 @@ for startIdx,endIdx in dialIdx:
             result = start + subclicks
 print(result)        
 
+
+
+'''
+137384
+Your answer length is: correct
+The first character of your answer is: incorrect
+'''
