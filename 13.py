@@ -17,3 +17,29 @@ dial = [1] + half1 + half2
 clicks = 2025%length
 #print(clicks)
 print(dial[clicks])
+
+
+
+input = '''10-15
+12-13
+20-21
+19-23
+30-37'''
+
+half1 = []
+half2 = []
+ranges = input.split('\n')
+for i,r in enumerate(ranges):
+    start,end = r.split('-')
+    start,end = int(start),int(end)
+    if i%2 == 0:
+        half1+=list(range(start,end+1))
+    else:
+        half2+=list(range(start,end+1))
+        
+dial = [1] + half1 + half2[::-1]
+#print(dial)
+
+clicks = 20252025%len(dial)
+#print(clicks)
+print(dial[clicks])
