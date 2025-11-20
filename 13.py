@@ -7,3 +7,8 @@ input = '''72
 nums = [int(x) for x in input.split('\n')]
 num_count = len(nums)
 length = num_count + 1
+
+half1 = [x for i,x in enumerate(nums) if i%2 == 0]
+half2 = [x for i,x in enumerate(nums) if i%2 != 0][::-1]
+
+dial = [1] + half1 + half2
