@@ -12,3 +12,8 @@ half1 = [x for i,x in enumerate(nums) if i%2 == 0]
 half2 = [x for i,x in enumerate(nums) if i%2 != 0][::-1]
 
 dial = [1] + half1 + half2
+#print(dial)
+
+clicks = 2025%length
+#print(clicks)
+print(dial[clicks])
