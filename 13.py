@@ -43,3 +43,48 @@ dial = [1] + half1 + half2[::-1]
 clicks = 20252025%len(dial)
 #print(clicks)
 print(dial[clicks])
+
+
+
+half1 = []
+half2 = []
+ranges = input.split('\n')
+for i,r in enumerate(ranges):
+    start,end = r.split('-')
+    start,end = int(start),int(end)
+    if i%2 == 0:
+        half1.append((start,end))
+    else:
+        half2.append((end,start))
+        
+dial = [(1,1)] + half1 + half2[::-1]
+#print(dial)
+
+dialIdx = []
+idx = -1
+for start,end in dial:
+    startIdx = idx+1
+    endIdx = abs(end-start)+startIdx
+    idx = endIdx
+    dialIdx.append((startIdx,endIdx))
+#print(dialIdx)
+
+#print(endIdx)
+clicks = 20252025%(endIdx+1)
+#print(clicks)
+
+idxNumDict = dict(zip(dialIdx,dial))
+#print(idxNumDict)
+
+for startIdx,endIdx in dialIdx:
+    if startIdx <= clicks <= endIdx:
+        start,end = idxNumDict[(startIdx,endIdx)]
+        #print(f'{start},{end}')
+        subclicks = clicks-startIdx
+        #print(subclicks)
+        if start > end:
+            result = start - subclicks
+        else:
+            result = start + subclicks
+print(result)        
+
