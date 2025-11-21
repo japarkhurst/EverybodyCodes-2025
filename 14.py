@@ -32,6 +32,8 @@ for i in range(10):
     activatedCount = len([g for g in grid if grid[g]])
     print(activatedCount)
     totalActivated += activatedCount
+    if i%100 == 0:
+        print(i)
 print(totalActivated)
 
 '''
