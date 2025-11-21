@@ -1,12 +1,11 @@
-input = '''989611
-857782
-746543
-766789'''
+input = '''.#.##.
+##..#.
+..##.#
+.#.##.
+.###..
+###.##'''
 
 grid = {}
-queue = []
-seen = set()
-burned = set()
 
 rows = input.split('\n')
 rowCount = len(rows)
