@@ -45,15 +45,15 @@ If a tile is inactive, it will become active in the next round if the number of 
 Otherwise, it remains inactive.
 '''
 
-    
-input = '''#......#
-..#..#..
-.##..##.
-...##...
-...##...
-.##..##.
-..#..#..
-#......#'''
+
+input = '''########
+##.##.##
+#......#
+##.##.##
+##.##.##
+#......#
+##.##.##
+########'''
 
 target = ''.join(input.split('\n'))
 print(target)
@@ -83,8 +83,10 @@ def getNeighbors(b):
     neighbors = [(x+1,y+1),(x-1,y-1),(x-1,y+1),(x+1,y-1)]
     return [(x,y) for (x,y) in neighbors if 0 <= x <= colCount-1 and 0 <= y <= rowCount-1]
 
+results = {}
+repeatFound = False
 totalActivated = 0
-for i in range(1,15000):
+for i in range(1,6000):
     newGrid = {}
     for g,active in grid.items():
         neighbors = getNeighbors(g)
@@ -95,17 +97,44 @@ for i in range(1,15000):
             newGrid[g] = 0
     grid = newGrid
     activatedCount = len([g for g in grid if grid[g]])
-    #print(activatedCount)
-    #totalActivated += activatedCount
-    #printGrid(grid)
     subgrid = ''.join(('#' if char else '.' for (x,y),char in grid.items() if 13 <= x <= 20 and 13 <= y <= 20))
     
-    if i in (125,1017) or subgrid == target:
+    if subgrid == target:
         print(f'{i}: {activatedCount}')
-        print(subgrid)
-        #print(activatedCount)
+        if activatedCount in results.values():
+            repeatFound=True
+            repeatIndex = i
+            repeatValue = activatedCount
+            break
+        results[i] = activatedCount
         totalActivated += activatedCount
-        #printGrid(subgrid,rowCount=8,colCount=8)
-        #printGrid(grid)
-        
-print(totalActivated)
+    if repeatFound:
+        break
+        #print(subgrid)
+print(results)       
+print(f'{repeatIndex}:{repeatValue}')
+
+sum(results.values())
+fullRepeatActivated = sum(results.values())
+firstIndex = [k for k,v in results.items() if v == repeatValue][0]
+fullRepeatLength = repeatIndex-firstIndex
+print(fullRepeatLength)
+
+fullRepeatCount = (rounds - firstIndex)//fullRepeatLength
+print(fullRepeatCount)
+
+rounds = 1000000000
+fullRepeatCount,remainder = divmod((rounds - firstIndex),fullRepeatLength)
+print(fullRepeatCount)
+print(remainder)
+
+additions = 0
+for i in range(1,remainder+1):
+    if i in results:
+        additions+=results[i]
+        print(results[i])
+print(additions)
+
+total = fullRepeatCount*fullRepeatActivated + additions
+print('---')
+print(total)
