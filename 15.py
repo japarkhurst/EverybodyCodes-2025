@@ -1,10 +1,10 @@
 input = 'R3,R4,L3,L4,R3,R6,R9'
-
+input = 'L6,L3,L6,R3,L6,L3,L3,R6,L6,R6,L6,L6,R3,L3,L3,R3,R3,L6,L6,L3'
 L,R = 'L','R'
 N,S,E,W = 'N','S','E','W'
-walls = set()
+walls = []
 cx,cy = (0,0)
-walls.add((cx,cy))
+walls.append((cx,cy))
 face = N
 L_Turn_Dict = {N:W,W:S,S:E,E:N}
 R_Turn_Dict = {v:k for k,v in L_Turn_Dict.items()}
@@ -22,16 +22,21 @@ for inst in input.split(','):
     for i in range(cnt):
         cx+=dx
         cy+=dy
-        walls.add((cx,cy))
+        walls.append((cx,cy))
         #print(f'Adding ({cx},{cy})')
     face = new_dir
 def printWalls(walls):
     xList = sorted({w[0] for w in walls})
     yList = sorted({w[1] for w in walls})
-    for y in range(min(yList),max(yList)+1):
+    start,end = walls[0],walls[-1]
+    for y in range(max(yList),min(yList)-1,-1):
         row = ''
         for x in range(min(xList),max(xList)+1):
-            if (x,y) in walls:
+            if (x,y) == start:
+                row+='S'
+            elif (x,y) == end:
+                row+='E'
+            elif (x,y) in walls:
                 row+='#'
             else:
                 row+=' '
