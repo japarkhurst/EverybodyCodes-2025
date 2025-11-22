@@ -1,6 +1,6 @@
 input = 'R3,R4,L3,L4,R3,R6,R9'
 input = 'L6,L3,L6,R3,L6,L3,L3,R6,L6,R6,L6,L6,R3,L3,L3,R3,R3,L6,L6,L3'
-#input = 'L6,L3,L6,R6,L6,L3,R6,L6,L6,R6,L3,R6,L3,L6,R3,R6,L6,L3,R6,L6,L6,R3,R3,L6,L3,R6,L3,R6,L6,L6,R3,R6,L6,L6,R6,L6,R3,L3,R6,L3,L6,R3,L3,R3,L3,R6,L6,R6,L3,L3,R6,R6,L6,L3,R3,L3,R6,L3,R3,L3'
+input = 'L6,L3,L6,R6,L6,L3,R6,L6,L6,R6,L3,R6,L3,L6,R3,R6,L6,L3,R6,L6,L6,R3,R3,L6,L3,R6,L3,R6,L6,L6,R3,R6,L6,L6,R6,L6,R3,L3,R6,L3,L6,R3,L3,R3,L3,R6,L6,R6,L3,L3,R6,R6,L6,L3,R3,L3,R6,L3,R3,L3'
 
 L,R = 'L','R'
 N,S,E,W = 'N','S','E','W'
@@ -51,7 +51,7 @@ def getNodes(walls):
 
 def getNeighbors(b):
     x,y = b
-    return [(x+1,y+1),(x-1,y-1),(x-1,y+1),(x+1,y-1)]
+    return [(x+1,y),(x-1,y),(x,y+1),(x,y-1)]
  
 #print(sorted(walls))
 start,end,nodes = getNodes(walls)
@@ -64,15 +64,16 @@ while pq:
     c_dist,c_node = heapq.heappop(pq)
     #if c_dist > distances[c_node]:
         #continue
-
+    #print(f'{c_node}:{c_dist}')
     for n in getNeighbors(c_node):
         dist = c_dist + 1
         c_n_dist = distances.get(n)
-        print(f'{n}: {dist},{c_n_dist}')
+        #print(f'\t{n}: {dist},{c_n_dist}')
         if not c_n_dist:
             continue
         if dist < c_n_dist:
             distances[n] = dist
+            #print(f'\t\tUpdating from {c_n_dist} to {dist}')
             heapq.heappush(pq,(dist,n))
-print(len(nodes))
+#print(len(nodes))
 print(distances[end])
