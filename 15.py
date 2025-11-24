@@ -62,6 +62,8 @@ distances[start]=0
 pq = [(0,start)]
 while pq:
     c_dist,c_node = heapq.heappop(pq)
+    if c_node == end:
+        break
     #if c_dist > distances[c_node]:
         #continue
     #print(f'{c_node}:{c_dist}')
