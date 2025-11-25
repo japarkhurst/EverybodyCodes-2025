@@ -11,7 +11,7 @@ total = 1
 idx = 0
 while sum(wall) > 0:
     idx+=1
-    idxList = [i for i,x in enumerate(wall) if wallLength%i == 0]
+    idxList = [i for i,x in enumerate(wall) if (i+1)%idx == 0]
     valid = all(wall[i] >= 1 for i in idxList)
     if not valid:
         continue
