@@ -31,8 +31,8 @@ spell = [int(x) for x in spell.split(',')]
         
 target = 202520252025000
 length = 94439495762954 
-target = 100000000
-max_i = 1000000
+target = 202520252025000
+max_i = 100000000
 maxBound = target
 minBound = 0
 i = 0
@@ -45,7 +45,7 @@ while True and i < max_i:
     blocksRequired = sum(int(guessedLength//num) for num in spell)
     #print(f'{guessedLength} as guessed length uses {blocksRequired}')
     if blocksRequired == target:
-        #print(f'Target found exactly using {blocksRequired} and length {guessedLength}')
+        print(f'Target found exactly using {blocksRequired} blocks and length {guessedLength}')
         break
     elif blocksRequired < target:
         #print(f'Block count {blocksRequired} less than target using {guessedLength} length')
@@ -54,9 +54,10 @@ while True and i < max_i:
         #print(f'Block count {blocksRequired} greater than target using {guessedLength} length')
         maxBound = guessedLength
     if maxBound - minBound == 1:
-        #print(f'Target found between {maxBound} and {minBound}; choosing {minBound}')
+        print(f'Target found between {maxBound} and {minBound}; choosing {min(minBound,maxBound)}')
         break
-print(minBound)   
+print(i)
+print(min(minBound,maxBound))   
 '''
 blocks     the length of the wall
                1                          1
