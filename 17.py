@@ -20,4 +20,18 @@ input = '''189482189843433862719
 987342622289291613318
 971977649141188759131'''
 
-
+rows = input.split('\n')
+rowCount = len(rows)
+colCount = len(rows[0])
+R = 10
+charDict = {}
+for y,row in enumerate(rows):
+    for x,char in enumerate(row):
+        if char == '@':
+            V = (x,y)
+            #charDict[(x,y)] = char
+        else:
+            charDict[(x,y)] = int(char)
+Xv,Yv = V
+result = sum(num for (Xc,Yc),num in charDict.items() if (Xv - Xc) * (Xv - Xc) + (Yv - Yc) * (Yv - Yc) <= R * R)
+print(result)
