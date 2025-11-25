@@ -7,7 +7,7 @@ print(total)
 input = '1,2,2,2,2,3,1,2,3,3,1,3,1,2,3,2,1,4,1,3,2,2,1,3,2,2'
 wall = [int(x) for x in input.split(',')]
 wallLength = len(wall)
-nums = []
+total = 1
 idx = 0
 while sum(wall) > 0:
     idx+=1
@@ -17,7 +17,8 @@ while sum(wall) > 0:
         continue
     for i in idxList:
         wall[i]-=1
-    nums.append(idx)
+    total*=idx
+print(total)
 
     
     
