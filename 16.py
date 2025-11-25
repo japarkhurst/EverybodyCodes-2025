@@ -5,10 +5,10 @@ total = sum(int(columns//num) for num in nums)
 print(total)
 
 input = '1,2,2,2,2,3,1,2,3,3,1,3,1,2,3,2,1,4,1,3,2,2,1,3,2,2'
-nums = [int(x) for x in input.split(',')]
-columnCount = len(nums)
+wall = [int(x) for x in input.split(',')]
+wallLength = len(wall)
 idx = 0
-while sum(nums) > 0:
+while sum(wall) > 0:
     idx+=1
-    idxList = [i for i,x in enumerate(nums) if columnCount%i == 0]
-    
+    idxList = [i for i,x in enumerate(wall) if wallLength%i == 0]
+    valid = all(
