@@ -25,7 +25,7 @@ print(spell)
 
 spell = '1,2,2,2,2,3,1,2,3,3,1,3,1,2,3,2,1,4,1,3,2,2,1,3,2,2'
 #spell = '1,2,4,8,12,38,66,72,98,120,122,136,154,156,163,183,202,205,218,237,248,262,269,292,300,461,601,733,887,953'
-spell = [int(x) for x in spall.split(',')]
+spell = [int(x) for x in spell.split(',')]
         
 target = 202520252025000
 length = 94439495762954 
@@ -46,10 +46,10 @@ while True and i < max_i:
         break
     elif blocksRequired < target:
         print(f'Block count {blocksRequired} less than target using {guessedLength} length')
-        maxBound = half+1
+        maxBound = guessedLength+1
     elif blocksRequired > target:
         print(f'Block count {blocksRequired} greater than target using {guessedLength} length')
-        minBound = half-1
+        minBound = guessLength-1
     if maxBound - minBound == 1:
         print(f'Target found between {maxBound} and {minBound}; choosing {minBound}')
 
