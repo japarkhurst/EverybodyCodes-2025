@@ -38,17 +38,18 @@ while True and i < max_i:
     i+=1
     #maxBlocks = sum(int(maxBound//num) for num in wall)
     #minBlocks = sum(int(minBound//num) for num in wall)
-    half = (maxBound-minBound)/2
-    halfBlocks = sum(int(half//num) for num in spell)
-    if halfBlocks == target:
-        print(f'Target found exactly at {half}')
+    guessedLength = int((maxBound-minBound)//2)
+    blocksRequired = sum(int(guessedLength//num) for num in spell)
+    print(f'{guessedLength} length uses {blocksRequired}')
+    if blocksRequired == target:
+        print(f'Target found exactly using {blocksRequired} and length {guessedLength}')
         break
-    elif halfBlocks < target:
-        print(f'Block count {halfBlocks} less than target at {half}')
-        maxBound = half
-    elif halfBlocks > target:
-        print(f'Block count {halfBlocks} greater than target at {half}')
-        minBound = half
+    elif blocksRequired < target:
+        print(f'Block count {blocksRequired} less than target using {guessedLength} length')
+        maxBound = half+1
+    elif blocksRequired > target:
+        print(f'Block count {blocksRequired} greater than target using {guessedLength} length')
+        minBound = half-1
     if maxBound - minBound == 1:
         print(f'Target found between {maxBound} and {minBound}; choosing {minBound}')
 
