@@ -7,6 +7,7 @@ print(total)
 input = '1,2,2,2,2,3,1,2,3,3,1,3,1,2,3,2,1,4,1,3,2,2,1,3,2,2'
 wall = [int(x) for x in input.split(',')]
 wallLength = len(wall)
+spell = []
 total = 1
 idx = 0
 while sum(wall) > 0:
@@ -18,7 +19,8 @@ while sum(wall) > 0:
     for i in idxList:
         wall[i]-=1
     total*=idx
+    spell.append(idx)
 print(total)
-
+print(spell)
     
 spell = '1,2,4,8,12,38,66,72,98,120,122,136,154,156,163,183,202,205,218,237,248,262,269,292,300,461,601,733,887,953'
