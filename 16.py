@@ -31,8 +31,8 @@ spell = [int(x) for x in spell.split(',')]
         
 target = 202520252025000
 length = 94439495762954 
-target = 1000
-max_i = 100
+target = 100000000
+max_i = 1000000
 maxBound = target
 minBound = 0
 i = 0
@@ -41,22 +41,22 @@ while True and i < max_i:
     #maxBlocks = sum(int(maxBound//num) for num in wall)
     #minBlocks = sum(int(minBound//num) for num in wall)
     guessedLength = maxBound - int((maxBound-minBound)//2)
-    print(f'Searching for {guessedLength} between {minBound} and {maxBound}')
+    #print(f'Searching for {guessedLength} between {minBound} and {maxBound}')
     blocksRequired = sum(int(guessedLength//num) for num in spell)
-    print(f'{guessedLength} as guessed length uses {blocksRequired}')
+    #print(f'{guessedLength} as guessed length uses {blocksRequired}')
     if blocksRequired == target:
-        print(f'Target found exactly using {blocksRequired} and length {guessedLength}')
+        #print(f'Target found exactly using {blocksRequired} and length {guessedLength}')
         break
     elif blocksRequired < target:
-        print(f'Block count {blocksRequired} less than target using {guessedLength} length')
+        #print(f'Block count {blocksRequired} less than target using {guessedLength} length')
         minBound = guessedLength
     elif blocksRequired > target:
-        print(f'Block count {blocksRequired} greater than target using {guessedLength} length')
+        #print(f'Block count {blocksRequired} greater than target using {guessedLength} length')
         maxBound = guessedLength
     if maxBound - minBound == 1:
-        print(f'Target found between {maxBound} and {minBound}; choosing {minBound}')
+        #print(f'Target found between {maxBound} and {minBound}; choosing {minBound}')
         break
-print(minBound)  
+print(minBound)   
 '''
 blocks     the length of the wall
                1                          1
