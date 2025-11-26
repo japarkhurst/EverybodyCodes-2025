@@ -49,6 +49,7 @@ Xv,Yv = V
 result = sum(num for (Xc,Yc),num in charDict.items() if (Xv - Xc) * (Xv - Xc) + (Yv - Yc) * (Yv - Yc) <= R * R)
 print(result)
 
+R = max(rowCount,colCount)
 burnDict = {}
 priorBurned = 0
 for i in range(1,R+1):
