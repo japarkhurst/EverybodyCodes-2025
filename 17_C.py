@@ -71,6 +71,7 @@ PENDING.put(source,0)
 maxi = 10000
 i = 0
 
+targetXY = V
 print(f'{source=},{targetXY=}')
 # define adjacent
 # same coordinate but different direction (distance is 1000)
@@ -102,7 +103,7 @@ while PENDING and i < maxi:
             #distance = 1000
         ##else:
             #distance = 1
-        new_dist = current.dist + 1
+        new_dist = calcDistance(current,new) # current.dist + 1
         #if new_dist == new.dist:
             #pDict[(n.xy,n.dir)].add((current.xy,current.dir))
         if new_dist < new.dist:
