@@ -61,3 +61,7 @@ result = maxBurnRound * burnDict[maxBurnRound]
 print(result)
 #R:1   Lava:26          R:2   Lava:49          R:3  Lava:109 
 #R:4  Lava:146          R:5  Lava:218          R:6  Lava:199
+
+#4150
+#Your answer length is: incorrect
+#The first character of your answer is: incorrect
