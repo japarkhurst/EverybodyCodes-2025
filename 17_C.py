@@ -25,14 +25,9 @@ class Node:
     #parent: int = None
     def __lt__(self,item):
         return self.dist < item.dist
-
-def getNeighbors(c,coords):
-    x,y=c
-    adj = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]
-    return [c for c in adj if c in coords]
-
-def calcDist(current,new):
-    return current.dist + new.char
+        
+def calcDistance(current,new):
+    return current.dist + new.cost
 
 rows = input.split('\n')
 rowCount = len(rows)
@@ -43,8 +38,10 @@ for y,row in enumerate(rows):
     for x,char in enumerate(row):
         if char == '@':
             V = (x,y)
+            charDict[(x,y)] = 0
         elif char == 'S':
             S = (x,y)
+            charDict[(x,y)] = 0
         else:
             charDict[(x,y)] = int(char)
 Xv,Yv = V
@@ -57,25 +54,31 @@ for i in range(1,R+1):
     burned = sum(num for (Xc,Yc),num in charDict.items() if (Xv - Xc) * (Xv - Xc) + (Yv - Yc) * (Yv - Yc) <= i * i)
     burnDict[i] = burned-priorBurned
     priorBurned=burned
-print(burnDict)
+#print(burnDict)
 maxBurnRound = max(burnDict,key=lambda x:burnDict[x])
 result = maxBurnRound * burnDict[maxBurnRound]
-print(result)
+#print(result)
 
 Nodes = [Node(xy=c,cost=cost) for c,cost in charDict.items()]
 nDict = {(n.xy):n for n in Nodes}
+coords = [c for c in charDict.keys()]
 PENDING = PriorityQueue()
 source = [n for n in Nodes if n.xy == S][0]
 source.dist = 0
 PENDING.put(source,0)
-maxi = 10000
+maxi = 10
 i = 0
 
-targetXY = V
+def getNeighbors(c,coords,V):
+    x,y=c
+    Vx,Vy = V
+    if x >= Vx and y >= Vy:
+        neighbors = [(x+1,y),(x,y+1),(x-1,y),(x,y-1)]   
+    
+    return [c for c in neighbors if c in coords]
+
+targetXY = S
 print(f'{source=},{targetXY=}')
-# define adjacent
-# same coordinate but different direction (distance is 1000)
-# adjacent coordinate and same direction (distance is 1
 #pDict = {(n.xy,n.dir):set() for n in Nodes}
 while PENDING and i < maxi:
     i+=1
@@ -83,7 +86,7 @@ while PENDING and i < maxi:
     #print(f'\n\nPENDING: {PENDING}')
     current = PENDING.get()
     #print(f'{current=}')
-    if current.xy == targetXY:
+    if current.xy == targetXY and i > 1:
         print('Target Found')
         print(current)
         target = current
@@ -91,8 +94,8 @@ while PENDING and i < maxi:
     #currentID = current.id
     #neighbors = getNeighbors(current)
     #neighbors = neighborDict[current.id]
-    neighbors = getNeighbors(current.xy,coords)
-    #print(f'\nNeighbors for {current.xy}: {[n for n in neighbors]}')
+    neighbors = getNeighbors(current.xy,coords,V)
+    print(f'\nNeighbors for {current.xy}: {[n for n in neighbors]}')
     for n in neighbors:
         if not n:
             continue
@@ -109,5 +112,6 @@ while PENDING and i < maxi:
         if new_dist < new.dist:
             #pDict[(n.xy,n.dir)].add((current.xy,current.dir))
             nDict[n].dist = new_dist
-            #print(f'{n} added')
+            print(f'{n} added')
             PENDING.put(new,new_dist)
+            
