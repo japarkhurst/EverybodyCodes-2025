@@ -20,6 +20,20 @@ input = '''189482189843433862719
 987342622289291613318
 971977649141188759131'''
 
+input = '''4547488458944
+9786999467759
+6969499575989
+7775645848998
+6659696497857
+5569777444746
+968586@767979
+6476956899989
+5659745697598
+6874989897744
+6479994574886
+6694118785585
+9568991647449'''
+
 rows = input.split('\n')
 rowCount = len(rows)
 colCount = len(rows[0])
@@ -29,9 +43,21 @@ for y,row in enumerate(rows):
     for x,char in enumerate(row):
         if char == '@':
             V = (x,y)
-            #charDict[(x,y)] = char
         else:
             charDict[(x,y)] = int(char)
 Xv,Yv = V
 result = sum(num for (Xc,Yc),num in charDict.items() if (Xv - Xc) * (Xv - Xc) + (Yv - Yc) * (Yv - Yc) <= R * R)
 print(result)
+
+burnDict = {}
+priorBurned = 0
+for i in range(1,R+1):
+    burned = sum(num for (Xc,Yc),num in charDict.items() if (Xv - Xc) * (Xv - Xc) + (Yv - Yc) * (Yv - Yc) <= i * i)
+    burnDict[i] = burned-priorBurned
+    priorBurned=burned
+print(burnDict)
+maxBurnRound = max(burnDict,key=lambda x:burnDict[x])
+result = maxBurnRound * burnDict[maxBurnRound]
+print(result)
+#R:1   Lava:26          R:2   Lava:49          R:3  Lava:109 
+#R:4  Lava:146          R:5  Lava:218          R:6  Lava:199
