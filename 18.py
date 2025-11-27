@@ -35,7 +35,7 @@ class Branch():
 class Plant():
     id: int
     thickness: int
-    brightness: int = 0
+    energy: int = 0
     branches: list[Branch] = None
     
 plants = []
@@ -60,5 +60,15 @@ for row in input.split('\n'):
 p.branches = branches
 plants.append(p)
 branches = []
-for p in plants:
-    print(p)
+pDict = {p.id:p for p in plants}
+for i in range(len(plants)-1):
+    p = p[i]
+    incoming = 0
+    for b in p.branches:
+        to_energy = p[b.to_id].energy * b.thickness
+        incoming += to_energy
+    if incoming >= p.thickness:
+        p[i].energy = incoming
+    else:
+        p[i].energy = 0
+print(incoming)
