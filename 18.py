@@ -62,13 +62,13 @@ plants.append(p)
 branches = []
 pDict = {p.id:p for p in plants}
 for i in range(len(plants)-1):
-    p = p[i]
+    p = pDict[i]
     incoming = 0
     for b in p.branches:
-        to_energy = p[b.to_id].energy * b.thickness
+        to_energy = pDict[b.to_id].energy * b.thickness
         incoming += to_energy
     if incoming >= p.thickness:
-        p[i].energy = incoming
+        pDict[i].energy = incoming
     else:
-        p[i].energy = 0
+        pDict[i].energy = 0
 print(incoming)
