@@ -54,8 +54,11 @@ for row in input.split('\n'):
         b = Branch(source=pid,to=int(to_id),thickness=int(thickness))
         branches.append(b)
     else:
-        branches = []
         p.branches = branches
         plants.append(p)
+        branches = []
+p.branches = branches
+plants.append(p)
+branches = []
 for p in plants:
     print(p)
