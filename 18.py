@@ -65,8 +65,12 @@ for i in range(len(plants)-1):
     p = pDict[i]
     incoming = 0
     for b in p.branches:
-        to_energy = pDict[b.to_id].energy * b.thickness
+        if b.to:
+            to_energy = pDict[b.to].energy * b.thickness
+        else:
+            to_energy  = 1
         incoming += to_energy
+    print(f'incoming for {i}: {incoming}')
     if incoming >= p.thickness:
         pDict[i].energy = incoming
     else:
