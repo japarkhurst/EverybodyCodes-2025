@@ -61,7 +61,7 @@ p.branches = branches
 plants.append(p)
 branches = []
 pDict = {p.id:p for p in plants}
-for i in range(len(plants)-1):
+for i in range(1,len(plants)):
     p = pDict[i]
     incoming = 0
     for b in p.branches:
