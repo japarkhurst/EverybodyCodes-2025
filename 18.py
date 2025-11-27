@@ -71,17 +71,22 @@ for row in caseRows:
     cases.append({i:int(x) for x in enumerate(row.split(' '),1})
     
 pDict = {p.id:p for p in plants}
-for i in range(1,len(plants)+1):
-    p = pDict[i]
-    incoming = 0
-    for b in p.branches:
-        if b.to:
-            to_energy = pDict[b else:
-            to_energy  = 1
-        incoming += to_energy
-    print(f'incoming for {i}: {incoming}')
-    if incoming >= p.thickness:
-        pDict[i].energy = incoming
-    else:
-        pDict[i].energy = 0
-print(incoming)
+total = 0
+for case in cases:
+    for i in range(1,len(plants)+1):
+        p = pDict[i]
+        incoming = 0
+        for b in p.branches:
+            if b.to:
+                to_energy = pDict[b else:
+            else:
+                to_energy  = case[i]
+            incoming += to_energy
+        print(f'incoming for {i}: {incoming}')
+        if incoming >= p.thickness:
+            pDict[i].energy = incoming
+        else:
+            pDict[i].energy = 0
+    print(incoming)
+    total += incoming
+print(total)
