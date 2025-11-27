@@ -45,7 +45,7 @@ plants = []
 branches = []
 cases = []
 plantRows, caseRows = input.split('\n\n')
-for row in plantRows:
+for row in plantRows.split('\n'):
     if row.startswith('Plant'):
         _,id,_,_,thickness = row.strip(':').split(' ')
         pid = int(id)
@@ -66,8 +66,8 @@ p.branches = branches
 plants.append(p)
 
 cases = []
-for row in caseRows:
-    cases.append({i:int(x) for x in enumerate(row.split(' '),1)})
+for row in caseRows.split('\n'):
+    cases.append({i:int(x) for i,x in enumerate(row.split(' '),1)})
     
 pDict = {p.id:p for p in plants}
 total = 0
