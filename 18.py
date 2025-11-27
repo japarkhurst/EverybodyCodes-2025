@@ -78,7 +78,7 @@ for case in cases:
         incoming = 0
         for b in p.branches:
             if b.to:
-                to_energy = pDict[b else:
+                to_energy = pDict[b.to].energy * b.thickness
             else:
                 to_energy  = case[i]
             incoming += to_energy
