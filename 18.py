@@ -36,11 +36,22 @@ class Plant():
     id: int
     thickness: int
     brightness: int = 0
-    branches: list
-
-
+    branches: list[Branch] = None
+    
+plants = []
+branches = []
 for row in input.split('\n'):
     if not row:
+        branches = []
+        p.branches = branches
+        plants.append(p)
         continue
     if row.startswith('Plant'):
-        
+        _,id,_,_,thickness = row.strip(':').split(' ')
+        pid = int(id)
+        p = Plant(id=pid,thickness=int(thickness))
+    else:
+        x*, to_id,_,_,thickness = row.split(' ')
+        b = Branch(source=pid,to=int(to_id),thickness=int(thickness))
+        branches.append(b)
+print(plants)
