@@ -41,17 +41,21 @@ class Plant():
 plants = []
 branches = []
 for row in input.split('\n'):
-    if not row:
-        branches = []
-        p.branches = branches
-        plants.append(p)
-        continue
     if row.startswith('Plant'):
         _,id,_,_,thickness = row.strip(':').split(' ')
         pid = int(id)
         p = Plant(id=pid,thickness=int(thickness))
-    else:
-        x*, to_id,_,_,thickness = row.split(' ')
+    elif '-' in row:
+        if 'free' in row:
+            to_id = 0
+            thickness = 1
+        else:
+            _,_,_,_,to_id,_,_,thickness = row.split(' ')
         b = Branch(source=pid,to=int(to_id),thickness=int(thickness))
         branches.append(b)
-print(plants)
+    else:
+        branches = []
+        p.branches = branches
+        plants.append(p)
+for p in plants:
+    print(p)
