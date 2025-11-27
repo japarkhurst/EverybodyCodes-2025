@@ -44,7 +44,8 @@ class Plant():
 plants = []
 branches = []
 cases = []
-for row in input.split('\n'):
+plantRows, caseRows = input.split('\n\n')
+for row in plantRows:
     if row.startswith('Plant'):
         _,id,_,_,thickness = row.strip(':').split(' ')
         pid = int(id)
@@ -58,22 +59,24 @@ for row in input.split('\n'):
         b = Branch(source=pid,to=int(to_id),thickness=int(thickness))
         branches.append(b)
     elif row.startswith('0') or row.startswith('1'):
-        cases.append([int(x) for x in row.split(' ')])
-    else:
+else:
         p.branches = branches
         plants.append(p)
         branches = []
 p.branches = branches
 plants.append(p)
-branches = []
+
+cases = []
+for row in caseRows:
+    cases.append({i:int(x) for x in enumerate(row.split(' '),1})
+    
 pDict = {p.id:p for p in plants}
 for i in range(1,len(plants)+1):
     p = pDict[i]
     incoming = 0
     for b in p.branches:
         if b.to:
-            to_energy = pDict[b.to].energy * b.thickness
-        else:
+            to_energy = pDict[b else:
             to_energy  = 1
         incoming += to_energy
     print(f'incoming for {i}: {incoming}')
