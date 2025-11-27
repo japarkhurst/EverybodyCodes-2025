@@ -7,21 +7,24 @@ Plant 2 with thickness 1:
 Plant 3 with thickness 1:
 - free branch with thickness 1
 
-Plant 4 with thickness 17:
-- branch to Plant 1 with thickness 15
-- branch to Plant 2 with thickness 3
+Plant 4 with thickness 10:
+- branch to Plant 1 with thickness -25
+- branch to Plant 2 with thickness 17
+- branch to Plant 3 with thickness 12
 
-Plant 5 with thickness 24:
-- branch to Plant 2 with thickness 11
-- branch to Plant 3 with thickness 13
+Plant 5 with thickness 14:
+- branch to Plant 1 with thickness 14
+- branch to Plant 2 with thickness -26
+- branch to Plant 3 with thickness 15
 
-Plant 6 with thickness 15:
-- branch to Plant 3 with thickness 14
+Plant 6 with thickness 150:
+- branch to Plant 4 with thickness 5
+- branch to Plant 5 with thickness 6
 
-Plant 7 with thickness 10:
-- branch to Plant 4 with thickness 15
-- branch to Plant 5 with thickness 21
-- branch to Plant 6 with thickness 34'''
+
+1 0 1
+0 0 1
+0 1 1'''
 
 from dataclasses import dataclass
 
@@ -40,6 +43,7 @@ class Plant():
     
 plants = []
 branches = []
+cases = []
 for row in input.split('\n'):
     if row.startswith('Plant'):
         _,id,_,_,thickness = row.strip(':').split(' ')
@@ -53,6 +57,8 @@ for row in input.split('\n'):
             _,_,_,_,to_id,_,_,thickness = row.split(' ')
         b = Branch(source=pid,to=int(to_id),thickness=int(thickness))
         branches.append(b)
+    elif row.startswith('0') or row.startswith('1'):
+        cases.append([int(x) for x in row.split(' ')])
     else:
         p.branches = branches
         plants.append(p)
