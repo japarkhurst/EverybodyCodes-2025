@@ -12,6 +12,8 @@ for row in input.split('\n'):
     col,start,height = [int(x) for x in row.split(',')]
     window = []
     for i in range(start,start+height):
+        if (col+i)%2 != 0:
+            continue
         window.append((col,i))
     windowDict[col] = window
     width = col
