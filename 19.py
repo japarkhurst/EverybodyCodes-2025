@@ -45,6 +45,7 @@ def getNeighbors(b):
     return [(x+1,y+1),(x+1,y-1)]
 
 start = (0,0)
+targets = windowDict[width]
 #print(sorted(walls))
 #start,end,nodes = getNodes(walls)
 #print(f'{start=},{end=},{nodes=}')
@@ -54,13 +55,14 @@ distances[start]=0
 pq = [(0,start)]
 while pq:
     c_dist,c_node = heapq.heappop(pq)
-    if c_node == end:
+    if c_node in targets:
+        print(distances[c_node])
         break
     #if c_dist > distances[c_node]:
         #continue
     #print(f'{c_node}:{c_dist}')
     for n in getNeighbors(c_node):
-        dist = c_dist + 1
+        #dist = c_dist + 1
         c_n_dist = distances.get(n)
         #print(f'\t{n}: {dist},{c_n_dist}')
         if not c_n_dist:
@@ -70,4 +72,4 @@ while pq:
             #print(f'\t\tUpdating from {c_n_dist} to {dist}')
             heapq.heappush(pq,(dist,n))
 #print(len(nodes))
-print(distances[end])
+#print(distances[end])
