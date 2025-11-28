@@ -40,3 +40,34 @@ for x in range(1,width+1):
             grid[(x,y)] = Cell((x,y))
 print(grid)
 
+def getNeighbors(b):
+    x,y = b
+    return [(x+1,y+1),(x+1,y-1)]
+
+start = (0,0)
+#print(sorted(walls))
+#start,end,nodes = getNodes(walls)
+#print(f'{start=},{end=},{nodes=}')
+import heapq
+distances = {n:float('inf') for n in grid}
+distances[start]=0
+pq = [(0,start)]
+while pq:
+    c_dist,c_node = heapq.heappop(pq)
+    if c_node == end:
+        break
+    #if c_dist > distances[c_node]:
+        #continue
+    #print(f'{c_node}:{c_dist}')
+    for n in getNeighbors(c_node):
+        dist = c_dist + 1
+        c_n_dist = distances.get(n)
+        #print(f'\t{n}: {dist},{c_n_dist}')
+        if not c_n_dist:
+            continue
+        if dist < c_n_dist:
+            distances[n] = dist
+            #print(f'\t\tUpdating from {c_n_dist} to {dist}')
+            heapq.heappush(pq,(dist,n))
+#print(len(nodes))
+print(distances[end])
