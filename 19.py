@@ -22,7 +22,7 @@ print(windowDict)
 from dataclasses import dataclass
 @dataclass
 class Cell():
-    xy: tuple(int)
+    xy: tuple[int]
     dir: int = None
     
 grid = {}
