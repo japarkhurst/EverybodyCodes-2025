@@ -6,6 +6,7 @@ input = '''7,7,2
 40,8,2'''
 
 from math import inf
+from collections import defaultdict
 from dataclasses import dataclass
 import heapq
 
@@ -23,17 +24,17 @@ class PriorityQueue:
     def __len__(self):
         return len(self.elements)
         
-windowDict = {}
+windowDict = defaultdict(list)
 width = 0
 maxHeight = 0
 for row in input.split('\n'):
     col,start,height = [int(x) for x in row.split(',')]
-    window = []
+    #window = []
     for i in range(start,start+height):
         if (col+i)%2 != 0:
             continue
-        window.append((col,i))
-    windowDict[col] = window
+        #window.append((col,i))
+        windowDict[col].append((col,i))
     width = col
     maxHeight = max(i,maxHeight)
 print(width,maxHeight)
