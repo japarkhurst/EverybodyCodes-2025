@@ -48,17 +48,24 @@ for y,row in enumerate(rows):
 print(tList)
 
 cnt = 0
+neighbors = defaultdict(set)
 for (tx,ty) in tList:
     if (tx+1,ty) in tList:
         cnt += 1
+        neighbors[(tx,ty)].add((tx+1,ty))
+        neighbors[(tx+1,ty)].add((tx,ty))
     if isEven(ty) and not isEven(tx) and (tx,ty+1) in tList:
         cnt += 1
+        neighbors[(tx,ty)].add((tx,ty+1))
+        neighbors[(tx,ty+1)].add((tx,ty))
     if not isEven(ty) and isEven(tx) and (tx,ty+1) in tList:
         cnt += 1
+        neighbors[(tx,ty)].add((tx,ty+1))
+        neighbors[(tx,ty+1)].add((tx,ty))
 print(cnt)
 
-start = grid[(1,1)]
-targets = windowDict[width]
+grid = {(x,y):Node(xy=(x,y)) for (x,y) in tList}
+start = grid[startXY]
 distances = {n:float('inf') for n in grid}
 distances[start.xy]=0
 pq = PriorityQueue()
@@ -66,7 +73,7 @@ start.dist = 0
 pq.put(start,0)
 while pq:
     c = pq.get()
-    if c in targets:
+    if c.xy == targetXY:
         print(distances[c])
         break
     for n in getNeighbors(c):
@@ -75,17 +82,12 @@ while pq:
         #print(f'\t{n}: {dist},{c_n_dist}')
         if not c_n_dist:
             continue
-        nx,ny = n
-        cx,cy = c.xy
-        if ny > cy:
-            dist = c.dist + 1
-        else:
-            dist = c.dist
+        dist = c.dist + 1
         if dist < c_n_dist:
             distances[n] = dist
             grid[n].dist = dist
             pq.put(grid[n],dist)
 #print(len(nodes))
 #print(distances[end])
-result = min(dist for c,dist in distances.items() if c[0] == width)+1
-print(result)
+#result = min(dist for c,dist in distances.items() if c[0] == width)+1
+#print(result)
