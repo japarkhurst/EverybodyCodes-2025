@@ -44,7 +44,7 @@ for y,row in enumerate(rows):
         if char == 'S':
             startXY = (x,y)
         if char == 'E':
-            endXY = (x,y)
+            targetXY = (x,y)
 print(tList)
 
 cnt = 0
@@ -74,9 +74,9 @@ pq.put(start,0)
 while pq:
     c = pq.get()
     if c.xy == targetXY:
-        print(distances[c])
+        print(distances[c.xy])
         break
-    for n in getNeighbors(c):
+    for n in neighbors.get(c.xy,[]):
         #dist = c_dist + 1
         c_n_dist = distances.get(n)
         #print(f'\t{n}: {dist},{c_n_dist}')
