@@ -100,7 +100,7 @@ while pq:
         break
     #if c_dist > distances[c_node]:
         #continue
-    print(f'{c_node}')
+    #print(f'{c_node}')
     for n in getNeighbors(c_node):
         #dist = c_dist + 1
         c_n_dist = distances.get(n)
