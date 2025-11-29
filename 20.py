@@ -27,4 +27,10 @@ for (tx,ty) in tList:
         cnt += 1
 print(cnt)
 
+'''
+89
+
+Your answer length is: incorrect
+The first character of your answer is: incorrect
+'''
  
