@@ -44,7 +44,17 @@ from dataclasses import dataclass
 class Cell():
     xy: tuple[int]
     dir: int = None
-    
+
+@dataclass
+class Node:
+    #id: int
+    xy: tuple
+    #cost: int
+    dist: int = inf
+    #parent: int = None
+    def __lt__(self,item):
+        return self.dist < item.dist
+        
 grid = {}
 for x in range(1,width+1):
     for y in range(1,maxHeight+1):
@@ -53,7 +63,7 @@ for x in range(1,width+1):
         if x in windowDict:
             window = windowDict[x]
             for w in window:
-                grid[(w)] = Cell(w)
+                grid[w] = Cell(w)
         else:
             grid[(x,y)] = Cell((x,y))
 print(grid)
@@ -63,6 +73,7 @@ def getNeighbors(b):
     return [(x+1,y+1),(x+1,y-1)]
 
 start = (0,0)
+start = grid[(1,1)]
 targets = windowDict[width]
 #print(sorted(walls))
 #start,end,nodes = getNodes(walls)
@@ -78,6 +89,7 @@ distances = {n:float('inf') for n in grid}
 distances[start]=0
 #pq = [(0,start)]
 pq = PriorityQueue()
+start.dist = 0
 pq.put(start,0)
 while pq:
     c_node,c_dist = pq.get()
