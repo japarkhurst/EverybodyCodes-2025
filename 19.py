@@ -50,11 +50,8 @@ class Cell():
 
 @dataclass
 class Node:
-    #id: int
     xy: tuple
-    #cost: int
     dist: int = inf
-    #parent: int = None
     def __lt__(self,item):
         return self.dist < item.dist
         
@@ -78,46 +75,30 @@ def getNeighbors(b):
 start = (0,0)
 start = grid[(1,1)]
 targets = windowDict[width]
-#print(sorted(walls))
-#start,end,nodes = getNodes(walls)
-#print(f'{start=},{end=},{nodes=}')
-#Nodes = [Node(xy=c) for c,cost in charDict.items()]
-#nDict = {(n.xy):n for n in Nodes}
-#coords = [c for c in charDict.keys()]
-#PENDING = PriorityQueue()
-#source = [n for n in Nodes if n.xy == S][0]
-#source.dist = 0
-#PENDING.put(source,0)
 distances = {n:float('inf') for n in grid}
 distances[start.xy]=0
-#pq = [(0,start)]
 pq = PriorityQueue()
 start.dist = 0
 pq.put(start,0)
 while pq:
-    c_node = pq.get()
-    if c_node in targets:
-        print(distances[c_node])
+    c = pq.get()
+    if c in targets:
+        print(distances[c])
         break
-    #if c_dist > distances[c_node]:
-        #continue
-    #print(f'{c_node}')
-    for n in getNeighbors(c_node):
+    for n in getNeighbors(c):
         #dist = c_dist + 1
         c_n_dist = distances.get(n)
         #print(f'\t{n}: {dist},{c_n_dist}')
         if not c_n_dist:
             continue
         nx,ny = n
-        cx,cy = c_node.xy
+        cx,cy = c.xy
         if ny > cy:
-            dist = c_node.dist + 1
+            dist = c.dist + 1
         else:
-            dist = c_node.dist
+            dist = c.dist
         if dist < c_n_dist:
             distances[n] = dist
-            #print(f'\t\tUpdating from {c_n_dist} to {dist}')
-            #heapq.heappush(pq,(dist,n))
             grid[n].dist = dist
             pq.put(grid[n],dist)
 #print(len(nodes))
