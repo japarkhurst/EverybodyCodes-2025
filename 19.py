@@ -43,7 +43,9 @@ from dataclasses import dataclass
 @dataclass
 class Cell():
     xy: tuple[int]
-    dir: int = None
+    dist: int = inf
+    def __lt__(self,item):
+        return self.dist < item.dist
 
 @dataclass
 class Node:
@@ -115,6 +117,9 @@ while pq:
             distances[n] = dist
             #print(f'\t\tUpdating from {c_n_dist} to {dist}')
             #heapq.heappush(pq,(dist,n))
+            grid[n].dist = dist
             pq.put(n,dist)
 #print(len(nodes))
 #print(distances[end])
+result = min(dist for c,dist in distances.items() if c[0] == width)+1
+print(result)
