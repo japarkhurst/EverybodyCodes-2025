@@ -5,6 +5,24 @@ input = '''7,7,2
 28,5,5
 40,8,2'''
 
+from math import inf
+from dataclasses import dataclass
+import heapq
+
+class PriorityQueue:
+    def __init__(self):
+        self.elements = []
+    def empty(self): # determine if heap is empty
+        return not self.elements
+    def put(self, item, priority): # add to heap, sorted by priority
+        heapq.heappush(self.elements, (priority, item))
+    def get(self): # return from front of heap
+        return heapq.heappop(self.elements)[1]
+    def __str__(self):
+        return f'{self.elements}'
+    def __len__(self):
+        return len(self.elements)
+        
 windowDict = {}
 width = 0
 maxHeight = 0
