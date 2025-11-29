@@ -66,10 +66,10 @@ for x in range(1,width+1):
                 grid[w] = Cell(w)
         else:
             grid[(x,y)] = Cell((x,y))
-print(grid)
+#print(grid)
 
 def getNeighbors(b):
-    x,y = b
+    x,y = b.xy
     return [(x+1,y+1),(x+1,y-1)]
 
 start = (0,0)
@@ -86,19 +86,19 @@ targets = windowDict[width]
 #source.dist = 0
 #PENDING.put(source,0)
 distances = {n:float('inf') for n in grid}
-distances[start]=0
+distances[start.xy]=0
 #pq = [(0,start)]
 pq = PriorityQueue()
 start.dist = 0
 pq.put(start,0)
 while pq:
-    c_node,c_dist = pq.get()
+    c_node = pq.get()
     if c_node in targets:
         print(distances[c_node])
         break
     #if c_dist > distances[c_node]:
         #continue
-    #print(f'{c_node}:{c_dist}')
+    print(f'{c_node}')
     for n in getNeighbors(c_node):
         #dist = c_dist + 1
         c_n_dist = distances.get(n)
