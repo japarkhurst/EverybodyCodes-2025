@@ -42,7 +42,7 @@ print(windowDict)
 from dataclasses import dataclass
 @dataclass
 class Cell():
-    xy: tuple[int]
+    xy: tuple
     dist: int = inf
     def __lt__(self,item):
         return self.dist < item.dist
@@ -71,7 +71,7 @@ for x in range(1,width+1):
 #print(grid)
 
 def getNeighbors(b):
-    x,y = b.xy
+    (x,y) = b.xy
     return [(x+1,y+1),(x+1,y-1)]
 
 start = (0,0)
@@ -108,7 +108,7 @@ while pq:
         if not c_n_dist:
             continue
         nx,ny = n
-        cx,cy = c_node
+        cx,cy = c_node.xy
         if ny > cy:
             dist = c_node.dist + 1
         else:
