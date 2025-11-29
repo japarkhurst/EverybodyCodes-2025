@@ -28,9 +28,8 @@ for (tx,ty) in tList:
 print(cnt)
 
 '''
-89
-
-Your answer length is: incorrect
-The first character of your answer is: incorrect
+114
+Your answer length is: correct
+The first character of your answer is: correct
 '''
  
