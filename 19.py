@@ -71,6 +71,8 @@ import heapq
 distances = {n:float('inf') for n in grid}
 distances[start]=0
 pq = [(0,start)]
+pq = PriorityQueue()
+pq.put(start,0)
 while pq:
     c_dist,c_node = heapq.heappop(pq)
     if c_node in targets:
@@ -85,9 +87,16 @@ while pq:
         #print(f'\t{n}: {dist},{c_n_dist}')
         if not c_n_dist:
             continue
+        nx,ny = n
+        cx,cy = c_node
+        if ny > cy:
+            dist = c_dist + 1
+        else:
+            dist = c_dist
         if dist < c_n_dist:
             distances[n] = dist
             #print(f'\t\tUpdating from {c_n_dist} to {dist}')
-            heapq.heappush(pq,(dist,n))
+            #heapq.heappush(pq,(dist,n))
+            pq.put(n,dist)
 #print(len(nodes))
 #print(distances[end])
