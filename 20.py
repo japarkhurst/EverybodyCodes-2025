@@ -21,9 +21,9 @@ cnt = 0
 for (tx,ty) in tList:
     if (tx+1,ty) in tList:
         cnt += 1
-    elif isEven(ty) and isEven(tx) and (tx,ty+1) in tList:
+    if isEven(ty) and isEven(tx) and (tx,ty+1) in tList:
         cnt += 1
-    elif not isEven(ty) and not isEven(tx) and (tx,ty+1) in tList:
+    if not isEven(ty) and not isEven(tx) and (tx,ty+1) in tList:
         cnt += 1
 print(cnt)
 
