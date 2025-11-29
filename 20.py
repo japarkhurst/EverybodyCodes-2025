@@ -24,6 +24,16 @@ class PriorityQueue:
     def __len__(self):
         return len(self.elements)
 
+@dataclass
+class Node:
+    xy: tuple
+    dist: int = inf
+    def __lt__(self,item):
+        return self.dist < item.dist
+
+def isEven(num):
+    if num % 2 == 0:
+        return True
 
 tList = set()
 rows = input.split('\n')
@@ -33,10 +43,6 @@ for y,row in enumerate(rows):
             tList.add((x,y))
 print(tList)
 
-def isEven(num):
-    if num % 2 == 0:
-        return True
-    
 cnt = 0
 for (tx,ty) in tList:
     if (tx+1,ty) in tList:
@@ -47,9 +53,4 @@ for (tx,ty) in tList:
         cnt += 1
 print(cnt)
 
-'''
-114
-Your answer length is: correct
-The first character of your answer is: correct
-'''
  
