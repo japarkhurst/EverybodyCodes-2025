@@ -110,15 +110,15 @@ while pq:
         nx,ny = n
         cx,cy = c_node
         if ny > cy:
-            dist = c_dist + 1
+            dist = c_node.dist + 1
         else:
-            dist = c_dist
+            dist = c_node.dist
         if dist < c_n_dist:
             distances[n] = dist
             #print(f'\t\tUpdating from {c_n_dist} to {dist}')
             #heapq.heappush(pq,(dist,n))
             grid[n].dist = dist
-            pq.put(n,dist)
+            pq.put(grid[n],dist)
 #print(len(nodes))
 #print(distances[end])
 result = min(dist for c,dist in distances.items() if c[0] == width)+1
