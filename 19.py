@@ -67,14 +67,20 @@ targets = windowDict[width]
 #print(sorted(walls))
 #start,end,nodes = getNodes(walls)
 #print(f'{start=},{end=},{nodes=}')
-import heapq
+#Nodes = [Node(xy=c) for c,cost in charDict.items()]
+#nDict = {(n.xy):n for n in Nodes}
+#coords = [c for c in charDict.keys()]
+#PENDING = PriorityQueue()
+#source = [n for n in Nodes if n.xy == S][0]
+#source.dist = 0
+#PENDING.put(source,0)
 distances = {n:float('inf') for n in grid}
 distances[start]=0
-pq = [(0,start)]
+#pq = [(0,start)]
 pq = PriorityQueue()
 pq.put(start,0)
 while pq:
-    c_dist,c_node = heapq.heappop(pq)
+    c_node,c_dist = pq.get()
     if c_node in targets:
         print(distances[c_node])
         break
