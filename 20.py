@@ -36,9 +36,14 @@ def isEven(num):
         return True
 
 tList = set()
+oDict = {}
+i=0
 rows = input.split('\n')
 for y,row in enumerate(rows):
     for x,char in enumerate(row):
+        if char != '.':
+            i+=1
+            oDict[i] = (x,y)
         if char in ('T','S','E'):
             tList.add((x,y))
         if char == 'S':
@@ -46,6 +51,9 @@ for y,row in enumerate(rows):
         if char == 'E':
             targetXY = (x,y)
 print(tList)
+
+oNums = list(oDict.keys())
+print(oNums)
 
 cnt = 0
 neighbors = defaultdict(set)
